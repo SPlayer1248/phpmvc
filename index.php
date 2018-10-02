@@ -21,7 +21,9 @@
 		if(isset($_GET['c'])){
 			switch ($_GET['c']) {
 				case 'user':
-					include('controllers/user/controller.php');
+					// include('controllers/user/controller.php');
+					require_once('controllers/user/UserController.php');
+					$userController = new UserController();
 					break;
 				case 'server':
 					include('controllers/server/controller.php');
