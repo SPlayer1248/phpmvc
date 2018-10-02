@@ -30,6 +30,14 @@
 			return $this->hostname;
 		}
 
+		public function set_owner($owner){
+			$this->owner = $owner;
+		}
+
+		public function get_owner(){
+			return $this->owner;
+		}
+
 		public function set_os($os){
 			$this->os = $os;
 		}
@@ -66,7 +74,7 @@
 			$result = array();
 			$i=0;
 			while($row=$this->fetch()){
-				$result[$i] = array("ip" => $row['ip'], "owner" => $row['owner'], "hostname" => $row['os'], "open_ports" => $row['open_ports'], "filtered_ports" => $row['filtered_ports']);
+				$result[$i] = array("ip" => $row['ip'], "owner" => $row['owner'], "hostname" => $row['hostname'], "os" => $row['osname'], "open_ports" => $row['open_ports'], "filtered_ports" => $row['filtered_ports'], "date" => $row['date_scan']);
 				$i++;
 			}
 
@@ -85,7 +93,7 @@
 			$result = array();
 			$i=0;
 			while($row=$this->fetch()){
-				$result[$i] = array("ip" => $row['ip'], "owner" => $row['owner'], "hostname" => $row['os'], "open_ports" => $row['open_ports'], "filtered_ports" => $row['filtered_ports']);
+				$result[$i] = array("ip" => $row['ip'], "owner" => $row['owner'], "hostname" => $row['hostname'], "os" => $row['osname'], "open_ports" => $row['open_ports'], "filtered_ports" => $row['filtered_ports'], "date" => $row['date_scan']);
 				$i++;
 			}
 
@@ -94,8 +102,15 @@
 
 
 		public function add_report(){
-			$sql = "INSERT INTO `reports`(`ip`, `owner`, `hostname`, `osname`, `open_ports`, `filtered_ports`) VALUES ('$this->ip','$this->owner','$this->hostname','$this->osname','$this->open_ports','$this->filtered_ports')";
+			$sql = "SELECT * FROM reports WHERE ip='$this->ip'";
 			$this->query($sql);
+			if($this->num_row() == 0){
+				$sql = "INSERT INTO `reports`(`ip`, `owner`, `hostname`, `osname`, `open_ports`, `filtered_ports`) VALUES ('$this->ip','$this->owner','$this->hostname','$this->os','$this->open_ports','$this->filtered_ports')";
+				$this->query($sql);
+			} else {
+				$sql = "UPDATE `reports` SET `ip`='$this->ip',`owner`='$this->owner',`hostname`='$this->hostname',`osname`='$this->os',`open_ports`='$this->open_ports',`filtered_ports`='$this->filtered_ports' WHERE `ip`='$this->ip'";
+				$this->query($sql);
+			}
 		}
 
 }	

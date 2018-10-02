@@ -20,6 +20,12 @@ if (isset($_GET['a'])) {
 		case 'scanall':
 			include('controllers/server/scanallserver.php');
 			break;
+		case 'list_all_report':
+			include('controllers/server/listallreport.php');
+			break;
+		case 'list_report':
+			include('controllers/server/listreport.php');
+			break;
 		default:
 			# code...
 			break;

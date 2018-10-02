@@ -42,8 +42,6 @@ if (isset($_GET['ip']) && !empty($_GET['ip'])) {
 	} else {
 	    echo 'error opening the file.';
 	} 
-	$cmd = 'rm -rf '.$filename;
-	shell_exec($cmd);
 	if(isset($_SESSION['level'])==1 && isset($_GET['owner'])){
 		$owner = $_GET['owner'];
 	} else {

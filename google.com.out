@@ -1,0 +1,21 @@
+# Nmap 7.70 scan initiated Tue Oct 02 10:13:36 2018 as: nmap -v -O -oN google.com.out google.com
+Nmap scan report for google.com (172.217.194.139)
+Host is up (0.037s latency).
+Other addresses for google.com (not scanned): 172.217.194.113 172.217.194.101 172.217.194.102 172.217.194.138 172.217.194.100
+Not shown: 998 filtered ports
+PORT    STATE SERVICE
+80/tcp  open  http
+443/tcp open  https
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running (JUST GUESSING): OpenBSD 4.X (93%)
+OS CPE: cpe:/o:openbsd:openbsd:4.3
+Aggressive OS guesses: OpenBSD 4.3 (93%), OpenBSD 4.0 (85%)
+No exact OS matches for host (test conditions non-ideal).
+Uptime guess: 0.000 days (since Tue Oct 02 10:13:49 2018)
+TCP Sequence Prediction: Difficulty=257 (Good luck!)
+IP ID Sequence Generation: Randomized
+
+Read data files from: C:\Program Files (x86)\Nmap
+OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Oct 02 10:13:51 2018 -- 1 IP address (1 host up) scanned in 15.99 seconds
