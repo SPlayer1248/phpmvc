@@ -1,14 +1,5 @@
 <?php 
 
-	function getIPFromFile($file){
-		$fileContent = file_get_contents($file);
-		
-		$IPList = explode("\r\n", $fileContent);
-
-		return $IPList;
-
-	}
-
 	if (isset($_POST['add'])) {
 		
 		if(isset($_POST['ip']) && !empty($_POST['ip'])){

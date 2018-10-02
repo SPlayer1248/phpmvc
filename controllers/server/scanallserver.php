@@ -1,8 +1,5 @@
 <?php 
 
-// if (isset($_GET['ip']) && !empty($_GET['ip'])) {
-// 	$ip = $_GET['ip'];
-// 	$filename = $ip.'.out';
 	$server = new server();
 	if(isset($_SESSION['level'])==="1"){
 		$server->set_owner('');

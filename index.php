@@ -17,6 +17,13 @@
 		if (isset($_SESSION['name'])) {
 			echo '<p>Welcome '.$_SESSION['name'].'</p>';
 			echo '<p><a href="index.php?c=user&a=logout">Logout</a></p>';
+			echo '<br>';
+			echo '<a href="index.php?c=server&a=list">Server Manager</a><br>';
+			echo '<a href="index.php?c=user&a=list">User Manager</a>';
+
+			// if(isset($_SESSION['level']) === 1){
+			// 	echo '<a href="index.php?c=user&a=list">User Manager</a>';
+			// }
 		}
 		if(isset($_GET['c'])){
 			switch ($_GET['c']) {
@@ -26,7 +33,8 @@
 					$userController = new UserController();
 					break;
 				case 'server':
-					include('controllers/server/controller.php');
+					require_once('controllers/server/ServerController.php');
+					$serverController = new ServerController();
 					break;
 				
 				default:
