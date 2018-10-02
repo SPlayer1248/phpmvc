@@ -35,9 +35,17 @@
 
 		    if ($mime == 'text/plain') {
 		    	$owner = $_SESSION['name'];
-		        $IPList = getIPFromFile($_FILES['fileIP']['tmp_name']);
+		        $fileContent = file_get_contents($_FILES['fileIP']['tmp_name']);
+				$lines = explode("\r\n", $fileContent);
 		        $server = new server();		
-		        foreach ($IPList as $ip) {
+
+		        foreach ($lines as $line) {
+		        	if(explode(" - ", $line)[1]){
+		        		$ip = explode(" - ", $line)[0];
+		        		$owner = explode(" - ", $line)[1];
+		        	} else {
+		        		$ip = $line;
+		        	}
 		        	$server->set_ip($ip);
 					$server->set_owner($owner);
 

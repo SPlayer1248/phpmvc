@@ -1,12 +1,16 @@
 <?php 
-
+if(isset($_SESSION['level']) === 1){
+	echo '<a href="index.php?c=user&a=list">User</a>';
+	echo '<br>';
+}
+echo '<a href="index.php?c=server&a=list">Server</a>';
 if (isset($result)) {
 	
 ?>
 <form method="post" accept-charset="utf-8">
 	<table border="1" align="center">
 		<tr>
-			<td colspan="7">Server list! <a href="index.php?c=server&a=add">Add server (+) </a> <a href="index.php?c=server&a=scanall">Scan all </a> <a href="index.php?c=server&a=list_all_report">View all scan</a></td>
+			<td colspan="7">Server list! <a href="index.php?c=server&a=add">Add server (+)</a> <a href="index.php?c=server&a=scanall">Scan all</a> <a href="index.php?c=server&a=list_all_report">View all scan</a></td>
 		</tr>
 		<tr>
 			<td><b>IP</b></td>

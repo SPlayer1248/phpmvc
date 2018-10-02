@@ -1,10 +1,24 @@
 <?php 
 
-if (isset($_GET['ip']) && !empty($_GET['ip'])) {
-	$ip = $_GET['ip'];
-	$filename = $ip.'.out';
+// if (isset($_GET['ip']) && !empty($_GET['ip'])) {
+// 	$ip = $_GET['ip'];
+// 	$filename = $ip.'.out';
+	$server = new server();
+	if(isset($_SESSION['level'])==="1"){
+		$server->set_owner('');
+	} else {
+		$owner = $_SESSION['name'];
+		$server->set_owner($owner);
+	}
+	$result = $server->list_server();
+
+	foreach ($result as $row) {
+		$ip = $row['ip'];
+		$filename = $ip.'.out';
+		$owner = $row['owner'];
 	$cmd = 'nmap -v -O -oN '.$filename.' '.$ip;
 	shell_exec($cmd);
+
 	$hostname = '';
 	$os = '';
 	$open_ports = '';
@@ -42,11 +56,7 @@ if (isset($_GET['ip']) && !empty($_GET['ip'])) {
 	} else {
 	    echo 'error opening the file.';
 	} 
-	if(isset($_SESSION['level'])==1 && isset($_GET['owner'])){
-		$owner = $_GET['owner'];
-	} else {
-		$owner = $_SESSION['name'];
-	}
+	unlink($filename);
 	$report = new report();
 	$report->set_ip($ip);
 	$report->set_owner($owner);
@@ -55,7 +65,12 @@ if (isset($_GET['ip']) && !empty($_GET['ip'])) {
 	$report->set_open_ports($open_ports);
 	$report->set_filtered_ports($filtered_ports);
 	$report->add_report();
-	header('location: index.php?c=server&a=list_report&ip='.$ip);
-	exit();
+
 }
+
+
+	header('location: index.php?c=server&a=list_all_report');
+	exit();
+// }
+	
 ?>

@@ -33,7 +33,6 @@
 			} else {
 				$sql = "SELECT * FROM servers";
 			}
-			
 			$this->query($sql);
 			$result = array();
 			$i=0;

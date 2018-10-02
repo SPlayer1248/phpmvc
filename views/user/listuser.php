@@ -1,5 +1,7 @@
 <?php 
-
+if(isset($_SESSION['level']) === 1){
+	echo '<a href="index.php?c=server&a=list">Server</a>';
+}
 if (isset($result)) {
 	
 ?>

@@ -67,7 +67,7 @@
 			if($this->owner){
 				$sql = "SELECT * FROM reports WHERE owner='$this->owner'";
 			} else {
-				$sql = "SELECT * FROM reports";
+				$sql = "SELECT * FROM reports ORDER BY owner";
 			}
 			
 			$this->query($sql);
